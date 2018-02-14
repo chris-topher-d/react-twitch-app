@@ -1,0 +1,185 @@
+/* GENERAL */
+
+@import url('https://fonts.googleapis.com/css?family=Nunito|Exo+2:800');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+  color: #eae5f3;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 25px;
+  background: #222;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  border-radius: 10px;
+  background-color: #6441a5;
+  margin-bottom: 25px;
+}
+
+
+/* HEADER */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #6441a5;
+  padding: 15px;
+}
+
+header h1 {
+  padding: 5px 15px 10px 15px;
+  font-family: 'Exo 2';
+}
+
+.input-streamer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  padding: 0 0 15px 0;
+  margin-bottom: 5px;
+}
+
+.buttons {
+  display: flex;
+  padding-right: 15px;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  background-color: #866bb9;
+  border: none;
+  outline: none;
+  color: #fff;
+  margin-left: 10px;
+  padding: 5px 10px 5px 10px;
+  transition: .1s ease-in;
+}
+
+input {
+  height: 24px;
+  padding-left: 10px;
+}
+
+.add-btn {
+  background-color: #866bb9;
+}
+
+.btn:hover {
+  background-color: #0080ff;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #0080ff;
+}
+
+
+/* STREAMER INFO CONTAINER */
+
+.streamer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  box-sizing: border-box;
+  background-color: #866bb9;
+  opacity: .85;
+  margin: 2px 0 2px 0;
+  padding: 5px 15px 5px 15px;
+}
+
+.streamer-info:hover {
+  opacity: 1;
+}
+
+.logo {
+  text-align: center;
+  padding: 5px;
+  transition: 0.2s;
+}
+
+#player-logo {
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  transition: .2s;
+}
+
+#player-logo:hover {
+  transform: scale(1.1);
+}
+
+.logo, #channel, .status {
+  color: #eae5f3;
+}
+
+#channel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  text-align: left;
+  padding: 10px;
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  font-size: 12px;
+  padding: 5px;
+  text-align: center;
+}
+
+#offline .status {
+  font-style: italic;
+  font-size: 15px;
+}
+
+#delete-button {
+  padding-left: 5px;
+  cursor: pointer;
+  opacity: .5;
+  font-size: 20px;
+  transition: .1s ease-in;
+}
+
+#delete-button:hover {
+  opacity: 1;
+}
+
+
+/* FOOTER */
+
+footer {
+  padding: 15px;
+}
