@@ -1,8 +1,8 @@
 {
   "name": "react-twitch-app",
   "version": "0.1.0",
-  "homepage": "http://chris-topher-d.github.io/react-twitch-app",
-  "private": false,
+  "private": true,
+  "homepage": "https://chris-topher-d.github.io/react-twitch-app/",
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
