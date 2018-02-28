@@ -8,6 +8,7 @@ class AddChannel extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleChange(e) {
@@ -21,6 +22,12 @@ class AddChannel extends Component {
     this.setState({inputValue: ''});
   }
 
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.handleSubmit();
+    }
+  }
+
   render() {
     return (
       <div className='input-streamer'>
@@ -29,6 +36,7 @@ class AddChannel extends Component {
           placeholder='channel name'
           value={this.state.inputValue}
           onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
         />
         <button
           className='btn add-btn'
