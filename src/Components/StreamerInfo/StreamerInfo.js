@@ -1,4 +1,5 @@
 import React from 'react';
+import './StreamerInfo.css';
 
 const StreamerInfo = ({channelName, channelLink, logo, status, onDelete, id}) => (
   <div className='streamer-info' id={id}>

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import Header from './Header';
-import AddChannel from './AddChannel';
-import StreamerInfo from './StreamerInfo';
-import Footer from './Footer';
+import Header from '../Header/Header';
+import AddChannel from '../AddChannel/AddChannel';
+import StreamerInfo from '../StreamerInfo/StreamerInfo';
+import Footer from '../Footer/Footer';
+import './Streamers.css';
 const APIURL = 'https://wind-bow.glitch.me/twitch-api/channels/';
 const statusURL = 'https://wind-bow.glitch.me/twitch-api/streams/';
 let channels = [

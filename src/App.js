@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Streamers from './component/Streamers';
+import Streamers from './Components/Streamers/Streamers';
 import './App.css';
 
 class App extends Component {

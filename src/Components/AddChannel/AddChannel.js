@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './AddChannel.css';
 
 class AddChannel extends Component {
   constructor(props) {
