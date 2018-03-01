@@ -6,3 +6,5 @@ What are your favorite Twitch streamers up to?
 - View current status
 - Click on logo, name, or status to view stream
 - Sort list by status
+
+Try the Twitch Streamer app [here](https://christopherdennis.me/twitch-app/).
