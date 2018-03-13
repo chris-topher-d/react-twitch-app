@@ -8,45 +8,68 @@
   opacity: .85;
   margin: 2px 0;
   padding: 5px 15px;
-  transition: 0.15s; }
-  .streamer-info:hover {
-    opacity: 1; }
-  .streamer-info a {
-    text-decoration: none; }
-  .streamer-info#offline .status {
+  transition: 0.15s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  &#offline .status {
     font-style: italic;
-    font-size: 15px; }
-  .streamer-info .logo {
-    padding: 10px 0 10px 5px; }
-    .streamer-info .logo a {
-      display: flex; }
-      .streamer-info .logo a img {
+    font-size: 15px;
+  }
+
+  .logo {
+    padding: 10px 0 10px 5px;
+
+    a {
+      display: flex;
+
+      img {
         height: 60px;
         width: 60px;
         border-radius: 50%;
         border: 2.5px solid;
-        transition: .1s; }
-        .streamer-info .logo a img:hover {
-          transform: scale(1.1); }
-  .streamer-info .channel {
+        transition: .1s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .channel {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 175px;
-    padding: 10px; }
-  .streamer-info .status {
+    padding: 10px;
+  }
+
+  .status {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     width: 200px;
     font-size: 12px;
-    padding: 5px 10px; }
-  .streamer-info #delete-button {
+    padding: 5px 10px;
+  }
+
+  #delete-button {
     padding-left: 5px;
     cursor: pointer;
     opacity: .5;
     font-size: 20px;
-    transition: .1s; }
-    .streamer-info #delete-button:hover {
-      opacity: 1; }
+    transition: .1s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

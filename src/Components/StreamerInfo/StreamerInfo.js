@@ -5,10 +5,10 @@ const StreamerInfo = ({channelName, channelLink, logo, status, onDelete, id}) =>
   <div className='streamer-info' id={id}>
     <div className='logo'>
       <a href={channelLink} target='_blank'>
-        <img id='player-logo' src={logo} alt='player-logo' />
+        <img src={logo} alt='player-logo' />
       </a>
     </div>
-    <div id='channel'>
+    <div className='channel'>
       <a href={channelLink} target='_blank'>
         <h4>{channelName}</h4>
       </a>

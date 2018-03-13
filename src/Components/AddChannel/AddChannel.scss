@@ -4,16 +4,21 @@
   align-items: center;
   width: 500px;
   padding: 0 0 15px 0;
-  margin-bottom: 5px; }
-  .input-streamer input {
+  margin-bottom: 5px;
+
+  input {
     height: 24px;
     padding-left: 10px;
-    color: #222; }
-  .input-streamer .add-btn {
+    color: #222;
+  }
+
+  .add-btn {
     background-color: #866bb9;
     border: none;
     outline: none;
     color: #fff;
     margin-left: 10px;
     padding: 5px 10px 5px 10px;
-    transition: .1s ease-in; }
+    transition: .1s ease-in;
+  }
+}
