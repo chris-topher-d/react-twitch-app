@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   width: 500px;
+  background-color: #6441a5;
   padding: 0 0 15px 0;
   margin-bottom: 5px; }
   .input-streamer input {
@@ -16,4 +17,7 @@
     color: #fff;
     margin-left: 10px;
     padding: 5px 10px 5px 10px;
-    transition: .1s ease-in; }
+    transition: .1s; }
+    .input-streamer .add-btn:hover {
+      background-color: #0080ff;
+      cursor: pointer; }
