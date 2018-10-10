@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Streamers from './Components/Streamers/Streamers';
-import './App.css';
+import './sass/main.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <Streamers />
       </div>
     );

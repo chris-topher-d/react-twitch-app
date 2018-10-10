@@ -1,9 +1,0 @@
-@import url("https://fonts.googleapis.com/css?family=Nunito|Exo+2:800");
-.App {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  min-height: 100vh;
-  padding-top: 25px;
-  background: #222; }
