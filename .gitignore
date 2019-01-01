@@ -24,4 +24,5 @@ yarn-error.log*
 
 package-lock.json
 
+/src/apiClientId.js
 /src/sass/main.css
