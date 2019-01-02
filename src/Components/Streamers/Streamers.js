@@ -3,9 +3,12 @@ import Header from '../Header/Header';
 import AddChannel from '../AddChannel/AddChannel';
 import StreamerInfo from '../StreamerInfo/StreamerInfo';
 import Footer from '../Footer/Footer';
+import clientID from '../../apiClientId';
 
-const APIURL = 'https://wind-bow.glitch.me/twitch-api/channels/';
-const statusURL = 'https://wind-bow.glitch.me/twitch-api/streams/';
+const channelInfo = 'https://api.twitch.tv/helix/users?login=';
+const streamInfo = 'https://api.twitch.tv/helix/streams?';
+const gameInfo = 'https://api.twitch.tv/helix/games?';
+
 let channels = [
   "OgamingSC2",
   "ESL_SC2",
@@ -37,47 +40,72 @@ class Streamers extends Component {
     });
   }
 
-  addStreamer(e) {
-    fetch(statusURL + e)
+  addStreamer(streamer) {
+    fetch(streamInfo + 'user_login=' + streamer, {
+      headers: {
+        'Client-ID': clientID
+      }
+    })
     .then(response => response.json())
     .then(info => {
-      if (info.stream !== null) {
-        let parsedInfo = {
-          'name': info.stream.channel.display_name,
-          'url': info.stream.channel.url,
-          'logo': info.stream.channel.logo,
-          'game': info.stream.game,
-          'status': info.stream.channel.status,
-          '_id': info.stream.channel._id
+      // If streamer is currently ONLINE
+      if (info.data.length > 0) {
+        let logo = info.data[0].thumbnail_url.replace('{width}x{height}', '55x55');
+
+        let userInfo = {
+          name: info.data[0].user_name,
+          url: 'https://www.twitch.tv/' + info.data[0].user_name,
+          logo: logo,
+          status: info.data[0].title,
+          _id: info.data[0].id
         };
-        this.setState({online: [...this.state.online, parsedInfo]});
+
+        // Fetch game title with id
+        fetch(gameInfo + 'id=' + info.data[0].game_id, {
+          headers: {
+            'Client-ID': clientID
+          }
+        })
+        .then(response => response.json())
+        .then(gameInfo => {
+          userInfo.game = gameInfo.data[0].name;
+          this.setState({online: [...this.state.online, userInfo]});
+        });
+
+      // If streamer is currently OFFLINE
       } else {
-        fetch(APIURL + e)
+        fetch(channelInfo + streamer, {
+          headers: {
+            'Client-ID': clientID
+          }
+        })
         .then(response => response.json())
         .then(info => {
+          console.log(info);
           let offlineInfo = {};
-          if (info.error === 'Not Found') {
+          // If streamer doesn't exist
+          if (info.data.length === 0) {
             offlineInfo = {
-              'name': e,
-              'url': 'https://www.twitch.tv/' + e,
+              'name': streamer,
+              'url': 'https://www.twitch.tv/' + streamer,
               'logo': 'https://dummyimage.com/55x55/ea3a40/fff.png&text=!',
-              'status': 'Unable to find channel for ' + e,
-              '_id': e
+              'status': 'Unable to find channel for ' + streamer,
+              '_id': streamer
             };
           } else {
             offlineInfo = {
-              'name': info.display_name,
-              'url': info.url,
-              'logo': info.logo,
+              'name': info.data[0].display_name,
+              'url': 'https://www.twitch.tv/' + info.data[0].login,
+              'logo': info.data[0].profile_image_url,
               'status': 'offline',
-              '_id': info._id
+              '_id': info.data[0].id
             };
           }
           this.setState({offline: [...this.state.offline, offlineInfo]})
-        })
+        });
       }
-    })
-    .catch(error => console.log('parsing failed', error));
+
+    });
   }
 
   deleteStreamer(channel) {
