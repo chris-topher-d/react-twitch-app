@@ -1,12 +1,13 @@
 .streamer-info {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  width: 500px;
+  // width: 500px;
   background-color: $lightPurple;
   opacity: .85;
   margin: 2px 0;
-  padding: 5px 15px;
+  // padding: 5px 15px;
   transition: 0.15s;
 
   &:hover {
@@ -17,58 +18,93 @@
     text-decoration: none;
   }
 
-  &#offline .status {
-    font-style: italic;
-    font-size: 15px;
-  }
+  .info-top {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin: 2px 0;
+    padding: 5px 15px;
 
-  .logo {
-    padding: 10px 0 10px 5px;
+    &#offline .status {
+      font-style: italic;
+      font-size: 15px;
+    }
 
-    a {
-      display: flex;
+    .logo {
+      padding: 10px 0 10px 5px;
 
-      img {
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
-        border: 2.5px solid;
-        transition: .1s;
+      a {
+        display: flex;
 
-        &:hover {
-          transform: scale(1.1);
+        img {
+          height: 60px;
+          width: 60px;
+          border-radius: 50%;
+          border: 2.5px solid;
+          transition: .1s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
         }
+      }
+    }
+
+    .channel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 175px;
+      padding: 10px;
+    }
+
+    .status {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      width: 200px;
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+
+    #delete-button {
+      padding-left: 5px;
+      cursor: pointer;
+      opacity: .5;
+      font-size: 20px;
+      transition: .1s;
+
+      &:hover {
+        opacity: 1;
       }
     }
   }
 
-  .channel {
+  .info-bottom {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 175px;
-    padding: 10px;
-  }
-
-  .status {
-    display: flex;
+    // justify-content: center;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    width: 200px;
-    font-size: 12px;
-    padding: 5px 10px;
-  }
+    align-items: center;
 
-  #delete-button {
-    padding-left: 5px;
-    cursor: pointer;
-    opacity: .5;
-    font-size: 20px;
-    transition: .1s;
+    .twitch-player {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      // justify-content: center;
+      align-items: center;
+    }
 
-    &:hover {
-      opacity: 1;
+    .expand-btn {
+      cursor: pointer;
+      padding: 5px 0;
+      opacity: .5;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }
