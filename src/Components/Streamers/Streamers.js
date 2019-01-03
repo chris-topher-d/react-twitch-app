@@ -81,7 +81,6 @@ class Streamers extends Component {
         })
         .then(response => response.json())
         .then(info => {
-          console.log(info);
           let offlineInfo = {};
           // If streamer doesn't exist
           if (info.data.length === 0) {
