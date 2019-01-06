@@ -9,13 +9,14 @@ class StreamerInfo extends Component {
     }
   }
 
-  expandChannel = () => {
+  expandTwitchPlayer = (playerId) => {
     this.setState({expanded: !this.state.expanded});
+    this.props.focusedStreamer(playerId);
   }
 
   render() {
-    const twitchPlayer = this.state.expanded ? (
-        <TwitchPlayer channelName={this.props.channelName} />
+    const twitchPlayer = this.props.expanded ? (
+        <TwitchPlayer channelName={this.props.channelName} expanded={this.props.expanded}/>
       ) : null;
 
     return (
@@ -40,7 +41,7 @@ class StreamerInfo extends Component {
         </div>
         <div className='info-bottom'>
           {twitchPlayer}
-          {this.props.id === 'online' ? <p className='expand-btn' onClick={this.expandChannel}>V</p> : null}
+          {this.props.id === 'online' ? <p className='expand-btn' onClick={() => {this.expandTwitchPlayer(this.props.userId)}}>V</p> : null}
         </div>
       </div>
     );
