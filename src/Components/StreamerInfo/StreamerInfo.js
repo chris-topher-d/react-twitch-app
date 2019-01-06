@@ -4,13 +4,9 @@ import TwitchPlayer from './TwitchPlayer';
 class StreamerInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      expanded: false
-    }
   }
 
   expandTwitchPlayer = (playerId) => {
-    this.setState({expanded: !this.state.expanded});
     this.props.focusedStreamer(playerId);
   }
 
