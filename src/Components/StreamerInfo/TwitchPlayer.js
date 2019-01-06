@@ -18,9 +18,8 @@ class TwitchPlayer extends Component {
 
   render() {
     return (
-      <div className='twitch-player'>
-        <h3>StreamerInfo {this.props.targetID} {this.props.width} {this.props.height}</h3>
-        <div id={this.props.targetID}>test</div>
+      <div className={this.props.expanded ? 'twitch-player expanded' : 'twitch-player'}>
+          <div id={this.props.targetID}></div>
       </div>
     );
   }
@@ -29,7 +28,8 @@ class TwitchPlayer extends Component {
 TwitchPlayer.defaultProps = {
   targetID: 'twitch-embed',
   width: '490',
-  height: '500'
+  height: '500',
+  theme: 'dark'
 };
 
 export default TwitchPlayer;
