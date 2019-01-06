@@ -28,7 +28,8 @@ class Streamers extends Component {
       filter: {
         online: true,
         offline: true
-      }
+      },
+      focusedStreamer: ''
     }
     this.addStreamer = this.addStreamer.bind(this);
     this.filterStreamers = this.filterStreamers.bind(this);
@@ -57,7 +58,7 @@ class Streamers extends Component {
           url: 'https://www.twitch.tv/' + info.data[0].user_name,
           logo: logo,
           status: info.data[0].title,
-          _id: info.data[0].id
+          _id: info.data[0].user_id
         };
 
         // Fetch game title with id
@@ -97,7 +98,7 @@ class Streamers extends Component {
               'url': 'https://www.twitch.tv/' + info.data[0].login,
               'logo': info.data[0].profile_image_url,
               'status': 'offline',
-              '_id': info.data[0].id
+              '_id': info.data[0].user_id
             };
           }
           this.setState({offline: [...this.state.offline, offlineInfo]})
@@ -130,16 +131,27 @@ class Streamers extends Component {
     }
   }
 
+  focusedStreamer = (streamerId) => {
+    if (this.state.focusedStreamer === streamerId) {
+      this.setState({focusedStreamer: ''});
+    } else {
+      this.setState({focusedStreamer: streamerId});
+    }
+  }
+
   render() {
     const online = this.state.filter === 'all' || 'online' ?
       this.state.online.map(channel => (
         <StreamerInfo
           id={'online'}
           key={channel._id}
+          userId={channel._id}
           channelName={channel.name}
           channelLink={channel.url}
           logo={channel.logo}
           status={channel.game + ' : ' + channel.status}
+          expanded={channel._id === this.state.focusedStreamer ? true : null}
+          focusedStreamer={this.focusedStreamer}
           onDelete={(this.deleteStreamer.bind(this, channel.name))}
         />
       ))
