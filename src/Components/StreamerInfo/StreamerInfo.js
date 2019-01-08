@@ -4,6 +4,9 @@ import TwitchPlayer from './TwitchPlayer';
 class StreamerInfo extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+
+    }
   }
 
   expandTwitchPlayer = (playerId) => {
@@ -14,6 +17,8 @@ class StreamerInfo extends Component {
     const twitchPlayer = this.props.expanded ? (
         <TwitchPlayer channelName={this.props.channelName} expanded={this.props.expanded}/>
       ) : null;
+
+    const playerStyle = this.props.expanded ? {opacity: '1'} : {opacity: '0'};
 
     return (
       <div className='streamer-info' id={this.props.id}>
@@ -35,8 +40,10 @@ class StreamerInfo extends Component {
           </div>
           <span id='delete-button' onClick={this.props.onDelete}> x </span>
         </div>
-        <div className='info-bottom'>
-          {twitchPlayer}
+        <div className={this.props.expanded ? 'info-bottom expanded' : 'info-bottom'}>
+          <div className='player-container' style={playerStyle}>
+            {twitchPlayer}
+          </div>
           {this.props.id === 'online' ? <p className='expand-btn' onClick={() => {this.expandTwitchPlayer(this.props.userId)}}>V</p> : null}
         </div>
       </div>
