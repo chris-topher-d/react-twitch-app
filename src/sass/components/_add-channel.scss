@@ -8,18 +8,22 @@
   margin-bottom: 5px;
 
   input {
-    height: 24px;
-    padding-left: 10px;
+    height: 30px;
+    width: 250px;
+    border-radius: 100px;
+    border: 2px solid $lightPurple;
+    padding-left: 15px;
     color: #222;
   }
 
   .add-btn {
     background-color: $lightPurple;
+    border-radius: 100px;
     border: none;
     outline: none;
     color: #fff;
     margin-left: 10px;
-    padding: 5px 10px 5px 10px;
+    padding: 5px 15px 5px 15px;
     transition: .1s;
 
     &:hover {
