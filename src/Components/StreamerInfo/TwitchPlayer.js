@@ -19,7 +19,9 @@ class TwitchPlayer extends Component {
   render() {
     return (
       <div className={this.props.expanded ? 'twitch-player expanded' : 'twitch-player'}>
-          <div id={this.props.targetID}></div>
+        <div id={this.props.targetID}></div>
+        <div className='top-curtain'></div>
+        <div className='bottom-curtain'></div>
       </div>
     );
   }

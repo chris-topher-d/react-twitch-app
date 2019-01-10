@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import TwitchPlayer from './TwitchPlayer';
 
 class StreamerInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
   expandTwitchPlayer = (playerId) => {
     this.props.focusedStreamer(playerId);
   }
@@ -18,7 +11,7 @@ class StreamerInfo extends Component {
         <TwitchPlayer channelName={this.props.channelName} expanded={this.props.expanded}/>
       ) : null;
 
-    const playerStyle = this.props.expanded ? {opacity: '1'} : {opacity: '0'};
+    const playerStyle = this.props.expanded ? {opacity: '1', height: '500px'} : {opacity: '0', height: '0px'};
 
     return (
       <div className='streamer-info' id={this.props.id}>
@@ -44,7 +37,14 @@ class StreamerInfo extends Component {
           <div className='player-container' style={playerStyle}>
             {twitchPlayer}
           </div>
-          {this.props.id === 'online' ? <p className='expand-btn' onClick={() => {this.expandTwitchPlayer(this.props.userId)}}>V</p> : null}
+          {
+            this.props.id === 'online' ?
+            <p
+              className={this.props.expanded ? 'expand-btn rotate' : 'expand-btn'}
+              onClick={() => {this.expandTwitchPlayer(this.props.userId)}}
+            >V</p>
+            : null
+          }
         </div>
       </div>
     );
