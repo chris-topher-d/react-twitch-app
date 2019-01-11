@@ -30,20 +30,17 @@ class AddChannel extends Component {
 
   render() {
     return (
-      <div className='input-streamer'>
-        <input
+      <div className='streamer-search'>
+        <div id='search-bar'>
+          <input
           type='text'
-          placeholder='channel name'
+          placeholder='Search for streamer'
           value={this.state.inputValue}
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
-        />
-        <button
-          className='btn add-btn'
-          onClick={this.handleSubmit}
-        >
-          ADD STREAMER
-        </button>
+          />
+          <i class='fas fa-search' onClick={this.handleSubmit}></i>
+        </div>
       </div>
     )
   }
