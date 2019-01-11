@@ -1,34 +1,46 @@
-.input-streamer {
+.streamer-search {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 500px;
-  background-color: $darkPurple;
   padding: 0 0 15px 0;
   margin-bottom: 5px;
 
-  input {
+  #search-bar {
+    display: flex;
+    align-items: center;
     height: 30px;
-    width: 250px;
+    width: 350px;
+    background-color: $fontLight;
     border-radius: 100px;
     border: 2px solid $lightPurple;
-    padding-left: 15px;
+    padding: 0 10px;
     color: #222;
-  }
 
-  .add-btn {
-    background-color: $lightPurple;
-    border-radius: 100px;
-    border: none;
-    outline: none;
-    color: #fff;
-    margin-left: 10px;
-    padding: 5px 15px 5px 15px;
-    transition: .1s;
+    input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: $darkPurple;
+      font-weight: 300;
+      font-size: 15px;
+      letter-spacing: 1px;
+      padding: 0 5px;
 
-    &:hover {
-      background-color: $blue;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .fa-search {
+      padding: 0 5px;
+      font-size: 15px;
+      color: $lightPurple;
       cursor: pointer;
+
+      &:hover {
+        color: $blue;
+      }
     }
   }
 }
