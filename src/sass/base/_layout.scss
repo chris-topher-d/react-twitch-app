@@ -1,9 +1,11 @@
-.app {
+#app {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   min-height: 100vh;
-  padding-top: 25px;
   background: #222;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
