@@ -98,7 +98,7 @@ class Streamers extends Component {
               'url': 'https://www.twitch.tv/' + info.data[0].login,
               'logo': info.data[0].profile_image_url,
               'status': 'offline',
-              '_id': info.data[0].user_id
+              '_id': info.data[0].id
             };
           }
           this.setState({offline: [...this.state.offline, offlineInfo]})
@@ -171,8 +171,8 @@ class Streamers extends Component {
 
     return (
       <div className='container'>
-        <Header filter={this.filterStreamers} filterStreamers={this.filterStreamers}/>
         <AddChannel addStreamer={this.addStreamer}/>
+        <Header filterStreamers={this.filterStreamers}/>
         {this.state.filter.online && online}
         {this.state.filter.offline && offline}
         <Footer />
