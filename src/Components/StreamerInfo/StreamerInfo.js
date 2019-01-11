@@ -31,20 +31,22 @@ class StreamerInfo extends Component {
               {this.props.status}
             </a>
           </div>
-          <span id='delete-button' onClick={this.props.onDelete}> x </span>
+          <div className='streamer-btns'>
+            <span className='delete-button' onClick={this.props.onDelete} title="Remove">x</span>
+            {
+              this.props.id === 'online' ?
+              <i
+                className={this.props.expanded ? 'fas fa-angle-double-down expand-btn rotate' : 'fas fa-angle-double-down expand-btn'}
+                onClick={() => {this.expandTwitchPlayer(this.props.userId)}}
+              ></i>
+              : null
+            }
+          </div>
         </div>
         <div className={this.props.expanded ? 'info-bottom expanded' : 'info-bottom'}>
           <div className='player-container' style={playerStyle}>
             {twitchPlayer}
           </div>
-          {
-            this.props.id === 'online' ?
-            <p
-              className={this.props.expanded ? 'expand-btn rotate' : 'expand-btn'}
-              onClick={() => {this.expandTwitchPlayer(this.props.userId)}}
-            >V</p>
-            : null
-          }
         </div>
       </div>
     );
