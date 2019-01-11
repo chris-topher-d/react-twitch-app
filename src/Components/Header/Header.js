@@ -40,7 +40,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <h1>Twitch <br /> Streamers</h1>
+        <h1>Twitch Streamers</h1>
         <div className='buttons'>
           <li><button className={this.state.all} id="all-btn" onClick={this.handleSelection.bind(this)}>ALL</button></li>
           <li><button className={this.state.online} id="online-btn" onClick={this.handleSelection.bind(this)}>ONLINE</button></li>
