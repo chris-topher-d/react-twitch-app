@@ -18,7 +18,9 @@
   #app-title-shadow {
     position: absolute;
     color: $darkPurple;
+    filter: drop-shadow(0px 0px 1px $medPurple);
     padding-left: 3px;
     padding-top: 2px;
+    z-index: 1;
   }
 }
