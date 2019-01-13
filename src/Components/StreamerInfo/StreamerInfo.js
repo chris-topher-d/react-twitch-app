@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
+import { UnmountClosed } from 'react-collapse';
 import TwitchPlayer from './TwitchPlayer';
 
 class StreamerInfo extends Component {
-  expandTwitchPlayer = (playerId) => {
-    this.props.focusedStreamer(playerId);
+  constructor(props) {
+    super(props);
+    this.state = {
+      delete: false,
+      expanded: false
+    }
+  }
+
+  focusStreamer = (playerId) => {
+    this.props.focusStreamer(playerId);
+  }
+
+  onDelete = () => {
+    this.setState({delete: true});
+    setTimeout(this.props.onDelete, 1000);
   }
 
   render() {
@@ -11,44 +25,55 @@ class StreamerInfo extends Component {
         <TwitchPlayer channelName={this.props.channelName} expanded={this.props.expanded}/>
       ) : null;
 
-    const playerStyle = this.props.expanded ? {opacity: '1', height: '500px'} : {opacity: '0', height: '0px'};
+    const offlineStyle = this.props.status === 'offline' ? {'fontStyle': 'italic'} : null;
 
     return (
-      <div className='streamer-info' id={this.props.id}>
-        <div className='info-top'>
-          <div className='logo'>
-            <a href={this.props.channelLink} target='_blank'>
-              <img src={this.props.logo} alt='player-logo' />
-            </a>
+      <UnmountClosed
+        isOpened={!this.state.delete}
+        hasNestedCollapse={this.props.userId ? true : false}
+        springConfig={{stiffness: 500, damping: 50}}
+      >
+        <div className='streamer-info' style={this.props.expanded ? {'opacity': 1} : null}>
+          <div className='info-top'>
+            <div className='logo'>
+              <a href={this.props.channelLink} target='_blank'>
+                <img src={this.props.logo} alt='player-logo' />
+              </a>
+            </div>
+            <div className='channel'>
+              <a className='channel-link' href={this.props.channelLink} target='_blank'>
+                <h4 className='channel-name'>{this.props.channelName}</h4>
+              </a>
+            </div>
+            <div className='status'>
+              <a className='status-link' href={this.props.channelLink} target='_blank'>
+                <p style={offlineStyle}>{this.props.status}</p>
+              </a>
+            </div>
+            <div className='streamer-btns'>
+              <i className='delete-button far fa-times-circle' onClick={() => {this.onDelete()}} title='Delete Streamer'></i>
+              {
+                this.props.id === 'online' ?
+                <i
+                  className={this.props.expanded ? 'fas fa-angle-double-up expand-btn' : 'fas fa-angle-double-down expand-btn'}
+                  title='Expand'
+                  onClick={() => {this.focusStreamer(this.props.userId)}}
+                ></i>
+                : null
+              }
+            </div>
           </div>
-          <div className='channel'>
-            <a href={this.props.channelLink} target='_blank'>
-              <h4>{this.props.channelName}</h4>
-            </a>
-          </div>
-          <div className='status'>
-            <a href={this.props.channelLink} target='_blank'>
-              {this.props.status}
-            </a>
-          </div>
-          <div className='streamer-btns'>
-            <span className='delete-button' onClick={this.props.onDelete} title="Remove">x</span>
-            {
-              this.props.id === 'online' ?
-              <i
-                className={this.props.expanded ? 'fas fa-angle-double-down expand-btn rotate' : 'fas fa-angle-double-down expand-btn'}
-                onClick={() => {this.expandTwitchPlayer(this.props.userId)}}
-              ></i>
-              : null
-            }
-          </div>
+          <UnmountClosed
+            isOpened={this.props.expanded}
+            fixedHeight={500}
+            className={this.props.expanded ? 'player-container expanded' : 'player-container'}
+          >
+            <div>
+              {twitchPlayer}
+            </div>
+          </UnmountClosed>
         </div>
-        <div className={this.props.expanded ? 'info-bottom expanded' : 'info-bottom'}>
-          <div className='player-container' style={playerStyle}>
-            {twitchPlayer}
-          </div>
-        </div>
-      </div>
+      </UnmountClosed>
     );
   }
 }
