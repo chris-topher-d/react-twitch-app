@@ -10,12 +10,12 @@ class Header extends Component {
     }
   }
 
-  handleSelection(e) {
+  handleSelection = (e) => {
     this.props.filterStreamers(e.target.id);
     this.setActiveButtonClass(e.target.id);
   }
 
-  setActiveButtonClass(id) {
+  setActiveButtonClass = (id) => {
     if (id === 'all-btn') {
       this.setState({
         all: 'btn active',
@@ -40,11 +40,11 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <h1>Twitch Streamers</h1>
+
         <div className='buttons'>
-          <li><button className={this.state.all} id="all-btn" onClick={this.handleSelection.bind(this)}>ALL</button></li>
-          <li><button className={this.state.online} id="online-btn" onClick={this.handleSelection.bind(this)}>ONLINE</button></li>
-          <li><button className={this.state.offline} id="offline-btn" onClick={this.handleSelection.bind(this)}>OFFLINE</button></li>
+          <li><button className={this.state.all} id='all-btn' onClick={this.handleSelection}>ALL</button></li>
+          <li><button className={this.state.online} id='online-btn' onClick={this.handleSelection}>ONLINE</button></li>
+          <li><button className={this.state.offline} id='offline-btn' onClick={this.handleSelection}>OFFLINE</button></li>
         </div>
       </header>
     )
