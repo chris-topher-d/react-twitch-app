@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from '../Header/Header';
 import AddChannel from '../AddChannel/AddChannel';
 import StreamerInfo from '../StreamerInfo/StreamerInfo';
@@ -31,8 +31,6 @@ class Streamers extends Component {
       },
       focusedStreamer: ''
     }
-    this.addStreamer = this.addStreamer.bind(this);
-    this.filterStreamers = this.filterStreamers.bind(this);
   }
 
   componentWillMount() {
@@ -41,7 +39,7 @@ class Streamers extends Component {
     });
   }
 
-  addStreamer(streamer) {
+  addStreamer = (streamer) => {
     fetch(streamInfo + 'user_login=' + streamer, {
       headers: {
         'Client-ID': clientID
@@ -71,7 +69,8 @@ class Streamers extends Component {
         .then(gameInfo => {
           userInfo.game = gameInfo.data[0].name;
           this.setState({online: [...this.state.online, userInfo]});
-        });
+        })
+        .catch(err => console.log(err));
 
       // If streamer is currently OFFLINE
       } else {
@@ -102,36 +101,38 @@ class Streamers extends Component {
             };
           }
           this.setState({offline: [...this.state.offline, offlineInfo]})
-        });
+        })
+        .catch(err => console.log(err));
       }
 
-    });
+    })
+    .catch(err => console.log(err));
   }
 
-  deleteStreamer(channel) {
+  deleteStreamer = (channel) => {
     let onlineStreamers = this.state.online.filter(streamer => streamer.name !== channel);
     let offlineStreamers = this.state.offline.filter(streamer => streamer.name !== channel);
     this.setState({online: onlineStreamers, offline: offlineStreamers});
   }
 
-  filterStreamers(id) {
+  filterStreamers = (id) => {
     let filter = {...this.state.filter};
-    if (id === "all-btn") {
+    if (id === 'all-btn') {
       filter.online = true;
       filter.offline = true;
       this.setState({filter});
-    } else if (id === "online-btn") {
+    } else if (id === 'online-btn') {
       filter.online = true;
       filter.offline = false;
       this.setState({filter});
-    } else if (id === "offline-btn") {
+    } else if (id === 'offline-btn') {
       filter.online = false;
       filter.offline = true;
       this.setState({filter});
     }
   }
 
-  focusedStreamer = (streamerId) => {
+  focusStreamer = (streamerId) => {
     if (this.state.focusedStreamer === streamerId) {
       this.setState({focusedStreamer: ''});
     } else {
@@ -150,9 +151,10 @@ class Streamers extends Component {
           channelLink={channel.url}
           logo={channel.logo}
           status={channel.game + ' : ' + channel.status}
-          expanded={channel._id === this.state.focusedStreamer ? true : null}
-          focusedStreamer={this.focusedStreamer}
-          onDelete={(this.deleteStreamer.bind(this, channel.name))}
+          expanded={channel._id === this.state.focusedStreamer ? true : false}
+          focusStreamer={this.focusStreamer}
+          focusedStreamer={this.state.focusedStreamer}
+          onDelete={() => {this.deleteStreamer(channel.name)}}
         />
       ))
       : null;
@@ -165,12 +167,13 @@ class Streamers extends Component {
         channelLink={channel.url}
         logo={channel.logo}
         status={channel.status}
-        onDelete={(this.deleteStreamer.bind(this, channel.name))}
+        expanded={false}
+        onDelete={() => {this.deleteStreamer(channel.name)}}
       />
     ));
 
     return (
-      <div className='container'>
+      <div id='container'>
         <AddChannel addStreamer={this.addStreamer}/>
         <Header filterStreamers={this.filterStreamers}/>
         {this.state.filter.online && online}
