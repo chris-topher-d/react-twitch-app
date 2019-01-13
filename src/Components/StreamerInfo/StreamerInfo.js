@@ -37,17 +37,17 @@ class StreamerInfo extends Component {
           <div className='info-top'>
             <div className='logo'>
               <a href={this.props.channelLink} target='_blank'>
-                <img src={this.props.logo} alt='player-logo' />
+                <img src={this.props.logo} alt='player-logo' title='View at twitch.tv'/>
               </a>
             </div>
             <div className='channel'>
               <a className='channel-link' href={this.props.channelLink} target='_blank'>
-                <h4 className='channel-name'>{this.props.channelName}</h4>
+                <h4 className='channel-name' title='View at twitch.tv'>{this.props.channelName}</h4>
               </a>
             </div>
             <div className='status'>
               <a className='status-link' href={this.props.channelLink} target='_blank'>
-                <p style={offlineStyle}>{this.props.status}</p>
+                <p style={offlineStyle} title='View at twitch.tv'>{this.props.status}</p>
               </a>
             </div>
             <div className='streamer-btns'>
