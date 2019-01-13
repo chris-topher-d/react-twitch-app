@@ -19,24 +19,44 @@ header {
 
       button {
         width: 100px;
-        background-color: $lightPurple;
-        border: none;
+        background: transparent;
+        // border: none;
+        border: 2px outset;
         border-radius: 100px;
         outline: none;
-        color: #fff;
+        color: $fontLight;
+        font-weight: bold;
         margin: 5px;
         padding: 5px 10px 5px 10px;
-        transition: .1s;
+        cursor: pointer;
+        transition: 150ms ease-in-out;
 
         &:hover {
           background-color: $blue;
-          cursor: pointer;
         }
       }
 
       .active {
         background-color: $blue;
       }
+
+      // #all-btn {
+      //   &:hover, &.active {
+      //     background-color: $blue;
+      //   }
+      // }
+
+      // #online-btn {
+      //   &:hover, &.active {
+      //     background-color: $green;
+      //   }
+      // }
+
+      // #offline-btn {
+      //   &:hover, &.active {
+      //     background-color: $red;
+      //   }
+      // }
     }
   }
 }
