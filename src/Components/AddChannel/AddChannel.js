@@ -5,24 +5,21 @@ class AddChannel extends Component {
     super(props);
     this.state = {
       inputValue: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    }
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({
       inputValue: e.target.value
     });
   }
 
-  handleSubmit(props) {
+  handleSubmit = (props) => {
     this.props.addStreamer(this.state.inputValue);
     this.setState({inputValue: ''});
   }
 
-  handleKeyPress(e) {
+  handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       this.handleSubmit();
     }
@@ -33,13 +30,13 @@ class AddChannel extends Component {
       <div className='streamer-search'>
         <div id='search-bar'>
           <input
-          type='text'
-          placeholder='Search for streamer'
-          value={this.state.inputValue}
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}
+            type='text'
+            placeholder='Search for streamer'
+            value={this.state.inputValue}
+            onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
           />
-          <i class='fas fa-search' onClick={this.handleSubmit}></i>
+          <i className='fas fa-search' onClick={this.handleSubmit}></i>
         </div>
       </div>
     )
