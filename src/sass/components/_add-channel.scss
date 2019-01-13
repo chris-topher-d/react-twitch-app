@@ -3,25 +3,24 @@
   justify-content: center;
   align-items: center;
   width: 500px;
-  padding: 0 0 15px 0;
-  margin-bottom: 5px;
+  padding: 25px 0 0;
 
   #search-bar {
     display: flex;
     align-items: center;
     height: 30px;
     width: 350px;
-    background-color: $fontLight;
+    background-color: $darkPurple;
     border-radius: 100px;
     border: 2px solid $lightPurple;
     padding: 0 10px;
-    color: #222;
+    color: $fontLight;
 
     input {
       width: 100%;
       background: transparent;
       border: none;
-      color: $darkPurple;
+      color: $fontLight;
       font-weight: 300;
       font-size: 15px;
       letter-spacing: 1px;
@@ -39,7 +38,7 @@
       cursor: pointer;
 
       &:hover {
-        color: $blue;
+        color: $lightBlue;
       }
     }
   }
