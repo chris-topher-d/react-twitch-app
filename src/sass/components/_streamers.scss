@@ -4,7 +4,8 @@
   align-items: center;
   max-width: 500px;
   background-color: $darkPurple;
+  border: 2px solid $lightPurple;
   border-radius: 25px;
   margin-bottom: 25px;
-  z-index: 1;
+  z-index: 5;
 }
