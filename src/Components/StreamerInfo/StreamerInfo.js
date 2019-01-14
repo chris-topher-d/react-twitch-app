@@ -11,12 +11,15 @@ class StreamerInfo extends Component {
     }
   }
 
+  // Tells the parent div which online streamer div to expand
   focusStreamer = (playerId) => {
     this.props.focusStreamer(playerId);
   }
 
   onDelete = () => {
+    // this.state.delete to true to inform UnmountClosed to perform collapse animation
     this.setState({delete: true});
+    // Call delete function once collapse animation is complete
     setTimeout(this.props.onDelete, 1000);
   }
 
@@ -46,9 +49,7 @@ class StreamerInfo extends Component {
               </a>
             </div>
             <div className='status'>
-              <a className='status-link' href={this.props.channelLink} target='_blank'>
-                <p style={offlineStyle} title='View at twitch.tv'>{this.props.status}</p>
-              </a>
+              <p style={offlineStyle} title='View at twitch.tv'>{this.props.status}</p>
             </div>
             <div className='streamer-btns'>
               <i className='delete-button far fa-times-circle' onClick={() => {this.onDelete()}} title='Delete Streamer'></i>
