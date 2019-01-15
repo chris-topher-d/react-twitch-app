@@ -49,7 +49,7 @@ class StreamerInfo extends Component {
               </a>
             </div>
             <div className='status'>
-              <p style={offlineStyle} title='View at twitch.tv'>{this.props.status}</p>
+              <p style={offlineStyle}>{this.props.status}</p>
             </div>
             <div className='streamer-btns'>
               <i className='delete-button far fa-times-circle' onClick={() => {this.onDelete()}} title='Delete Streamer'></i>
