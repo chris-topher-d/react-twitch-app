@@ -10,13 +10,11 @@ const streamInfo = 'https://api.twitch.tv/helix/streams?';
 const gameInfo = 'https://api.twitch.tv/helix/games?';
 
 let channels = [
-  "OgamingSC2",
-  "ESL_SC2",
-  "freecodecamp",
+  'OgamingSC2',
+  'ESL_SC2',
   'funfunfunction',
-  "habathcx",
-  "RobotCaleb",
-  "noobs2ninjas"
+  'habathcx',
+  'noobs2ninjas'
 ];
 
 class Streamers extends Component {
@@ -39,6 +37,7 @@ class Streamers extends Component {
     });
   }
 
+  // Add Twitch streamer to list
   addStreamer = (streamer) => {
     fetch(streamInfo + 'user_login=' + streamer, {
       headers: {
@@ -109,12 +108,14 @@ class Streamers extends Component {
     .catch(err => console.log(err));
   }
 
+  // Delete streamer from list
   deleteStreamer = (channel) => {
     let onlineStreamers = this.state.online.filter(streamer => streamer.name !== channel);
     let offlineStreamers = this.state.offline.filter(streamer => streamer.name !== channel);
     this.setState({online: onlineStreamers, offline: offlineStreamers});
   }
 
+  // Filter all, online, and offline streamers
   filterStreamers = (id) => {
     let filter = {...this.state.filter};
     if (id === 'all-btn') {
@@ -132,6 +133,7 @@ class Streamers extends Component {
     }
   }
 
+  // Expand/collapse online streamers live stream player
   focusStreamer = (streamerId) => {
     if (this.state.focusedStreamer === streamerId) {
       this.setState({focusedStreamer: ''});
