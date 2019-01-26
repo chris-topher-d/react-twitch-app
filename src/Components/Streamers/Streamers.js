@@ -39,73 +39,90 @@ class Streamers extends Component {
 
   // Add Twitch streamer to list
   addStreamer = (streamer) => {
-    fetch(streamInfo + 'user_login=' + streamer, {
-      headers: {
-        'Client-ID': clientID
-      }
-    })
-    .then(response => response.json())
-    .then(info => {
-      // If streamer is currently ONLINE
-      if (info.data.length > 0) {
-        let logo = info.data[0].thumbnail_url.replace('{width}x{height}', '55x55');
+    // Add streamer if they aren't already added
+    if (!this.checkForStreamer(streamer)) {
+      fetch(streamInfo + 'user_login=' + streamer, {
+        headers: {
+          'Client-ID': clientID
+        }
+      })
+      .then(response => response.json())
+      .then(info => {
+        // If streamer is currently ONLINE
+        if (info.data.length > 0) {
+          let logo = info.data[0].thumbnail_url.replace('{width}x{height}', '55x55');
 
-        let userInfo = {
-          name: info.data[0].user_name,
-          url: 'https://www.twitch.tv/' + info.data[0].user_name,
-          logo: logo,
-          status: info.data[0].title,
-          _id: info.data[0].user_id
-        };
+          let userInfo = {
+            name: info.data[0].user_name,
+            url: 'https://www.twitch.tv/' + info.data[0].user_name,
+            logo: logo,
+            status: info.data[0].title,
+            _id: info.data[0].user_id
+          };
 
-        // Fetch game title with id
-        fetch(gameInfo + 'id=' + info.data[0].game_id, {
-          headers: {
-            'Client-ID': clientID
-          }
-        })
-        .then(response => response.json())
-        .then(gameInfo => {
-          userInfo.game = gameInfo.data[0].name;
-          this.setState({online: [...this.state.online, userInfo]});
-        })
-        .catch(err => console.log(err));
+          // Fetch game title with id
+          fetch(gameInfo + 'id=' + info.data[0].game_id, {
+            headers: {
+              'Client-ID': clientID
+            }
+          })
+          .then(response => response.json())
+          .then(gameInfo => {
+            userInfo.game = gameInfo.data[0].name;
+            this.setState({online: [...this.state.online, userInfo]});
+          })
+          .catch(err => console.log(err));
 
-      // If streamer is currently OFFLINE
-      } else {
-        fetch(channelInfo + streamer, {
-          headers: {
-            'Client-ID': clientID
-          }
-        })
-        .then(response => response.json())
-        .then(info => {
-          let offlineInfo = {};
-          // If streamer doesn't exist
-          if (info.data.length === 0) {
-            offlineInfo = {
-              'name': streamer,
-              'url': 'https://www.twitch.tv/' + streamer,
-              'logo': 'https://dummyimage.com/55x55/ea3a40/fff.png&text=!',
-              'status': 'Unable to find channel for ' + streamer,
-              '_id': streamer
-            };
-          } else {
-            offlineInfo = {
-              'name': info.data[0].display_name,
-              'url': 'https://www.twitch.tv/' + info.data[0].login,
-              'logo': info.data[0].profile_image_url,
-              'status': 'offline',
-              '_id': info.data[0].id
-            };
-          }
-          this.setState({offline: [...this.state.offline, offlineInfo]})
-        })
-        .catch(err => console.log(err));
-      }
+        // If streamer is currently OFFLINE
+        } else {
+          fetch(channelInfo + streamer, {
+            headers: {
+              'Client-ID': clientID
+            }
+          })
+          .then(response => response.json())
+          .then(info => {
+            let offlineInfo = {};
+            // If streamer doesn't exist
+            if (info.data.length === 0) {
+              offlineInfo = {
+                'name': streamer,
+                'url': 'https://www.twitch.tv/' + streamer,
+                'logo': 'https://dummyimage.com/55x55/ea3a40/fff.png&text=!',
+                'status': 'Unable to find channel for ' + streamer,
+                '_id': streamer
+              };
+            } else {
+              offlineInfo = {
+                'name': info.data[0].display_name,
+                'url': 'https://www.twitch.tv/' + info.data[0].login,
+                'logo': info.data[0].profile_image_url,
+                'status': 'offline',
+                '_id': info.data[0].id
+              };
+            }
+            this.setState({offline: [...this.state.offline, offlineInfo]})
+          })
+          .catch(err => console.log(err));
+        }
 
-    })
-    .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+    }
+  }
+
+  // Check state.online && state.offline for streamer
+  // Return true if streamer already exists, else false
+  checkForStreamer = (streamer) => {
+    let streamerNames = this.state.online.slice().concat(this.state.offline.slice()).map(channel => {
+      return channel.name.toLowerCase();
+    });
+
+    if (streamerNames.includes(streamer.toLowerCase())) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // Delete streamer from list
