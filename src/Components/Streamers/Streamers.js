@@ -31,7 +31,7 @@ class Streamers extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     channels.forEach(channel => {
       this.addStreamer(channel);
     });
